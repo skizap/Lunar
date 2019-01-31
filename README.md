@@ -25,6 +25,7 @@
  └──> Tools       : Shows all downloadable tools
  └──> c-history   : Clears command history
 
+   
 [+] Cryptography (7)
  └──> hex_encode  : Encode word(s) to hex
  └──> hex_decode  : Decode Hex to string
