@@ -2,7 +2,7 @@
 <img align="left" width="120" height="120" src="logo.png">
 <p> Python Framework ⭐</p>
 <img src="https://img.shields.io/badge/Tested-Linux%20%26%20Windows-green.svg">
-<br><hr><h3> Install <h3>
+<hr><h3> Install </h3></hr>
 <pre>
  pip2 install cryptography
  pip2 install urllib2
