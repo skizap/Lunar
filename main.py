@@ -20,6 +20,7 @@ import sys
 import json
 import socket
 import random
+import urllib2
 import hashlib
 import subprocess
 from colorama import init
@@ -91,21 +92,10 @@ ____^/\___^--____/\____O______________/\/\---/\___________---______________
    --  __                      ___--  ^  ^                         --  __
 ======================================================================================'''.format(color.RED, color.BLUE)
 
-
-logo3 = color.GREEN + '''  
-  .;'                     `;,
- .;'  ,;'             `;,  `;,   {0}By Metachar{1}
-.;'  ,;'  ,;'     `;,  `;,  `;, {0}LUNAR{1}
-::   ::   :   ( )   :   ::   ::  
-':.  ':.  ':. /_\ ,:'  ,:'  ,:' {0}Insta: @Zuccsss{1}
- ':.  ':.    /___\    ,:'  ,:'   
-  ':.       /_____\      ,:' 
-           /       \\ \n
-====================================='''.format(color.BLUE, color.GREEN)
 # Vars
 x = os.path.dirname(os.path.realpath(__file__))
 history = []
-logo_list = [logo1,logo2,logo3, logo4 ]
+logo_list = [logo1,logo2, logo4 ]
 termsAndConditions = color.BLUE + ''' Don`t Use LUNAR To:
 create and share malicious viruses, illegally harm others computers,
 interrupt wifi / bluetooth signals without permission, violate security,
@@ -114,13 +104,14 @@ and violate privacy
 '''
 
 help_mesg = '''
-{0}[+] {1}Default commands {2}(6)
+{0}[+] {1}Default commands {2}(7)
 {0} └──> {1}clear       : Clears Screen
 {0} └──> {1}exit        : Exits
 {0} └──> {1}help        : Shows help screen
 {0} └──> {1}/           : Use last command
 {0} └──> {1}banner      : prints banner
 {0} └──> {1}History     : Shows command History
+{0} └──> {1}Tools       : Shows all downloadable tools
 {0} └──> {1}c-history   : Clears command history
 
 {0}[+] {1}Cryptography {2}(7)
@@ -134,6 +125,37 @@ help_mesg = '''
 {0} └──> {1}hash_sha1   : Encodes word(s) to hash (SHA1)
 {0} └──> {1}hash_sha384 : Encodes word(s) to hash (SHA384)
 
+
+{0}[+] {1}Wordlist {2} (6)
+{0} └──> {1} realpass12k : Downloads a real password list with 12k words
+{0} └──> {1} darkweb2017 : Download the top passwords from the dark web
+{0} └──> {1} prob_wpa    : Download probable WPA passwords
+{0} └──> {1} unknown-azul: Downloads txt list unknown azul
+{0} └──> {1} bt4_list    : Downloads the bt4 pass list
+{0} └──> {1} cracked_hash: Downloads the cracked hash list
+
+{0}[+] {1}Networking {2} (12)
+{0} └──> {1} showmac     : Shows mac address
+{0} └──> {1} showip      : Show ipaddress
+{0} └──> {1} port listen : Listen to a port
+{0} └──> {1} geolocation : Locate an ip address
+{0} └──> {1} reverse_ip  : Reverse ip domian lookup
+{0} └──> {1} dns_lookup  : Do a dns lookup
+{0} └──> {1} dns_host_rec: Show a dns servers host record
+{0} └──> {1} zonetransfer: Do a zone transfer test
+{0} └──> {1} shared_dns  : Show a dns servers shared dns
+{0} └──> {1} traceroute  : Trace an ip
+{0} └──> {1} Whois       : Does a Whois lookup
+{0} └──> {1} tcpscan     : Does a tcp port scan
+
+{0}[+] {1}Web{2} (10)
+{0} └──> {1} sourcecode  : Get source code from website
+{0} └──> {1} site2ip     : Find ip address from website
+{0} └──> {1} headers     : Show headers of a website
+
+'''.format(color.BLUE, color.CWHITE, color.GREEN).decode('utf')
+
+tools ='''
 {0}[+] {1}Download tools {2}(31)
 {0} └──> {1}eagle-eye   : Downloads Eagle Eye    
 {0} └──> {1}highjack    : Downloads HighJacker   
@@ -167,36 +189,7 @@ help_mesg = '''
 {0} └──> {1}cookie-s    : Downloads CookieStealer    
 {0} └──> {1}killchain   : Downloads Kill chain 
 
-{0}[+] {1}Wordlist {2} (6)
-{0} └──> {1} realpass12k : Downloads a real password list with 12k words
-{0} └──> {1} darkweb2017 : Download the top passwords from the dark web
-{0} └──> {1} prob_wpa    : Download probable WPA passwords
-{0} └──> {1} unknown-azul: Downloads txt list unknown azul
-{0} └──> {1} bt4_list    : Downloads the bt4 pass list
-{0} └──> {1} cracked_hash: Downloads the cracked hash list
-
-{0}[+] {1}Networking {2} (12)
-{0} └──> {1} showmac     : Shows mac address
-{0} └──> {1} showip      : Show ipaddress
-{0} └──> {1} port listen : Listen to a port
-{0} └──> {1} geoloacation: Locate an ip address
-{0} └──> {1} reverse_ip  : Reverse ip domian lookup
-{0} └──> {1} dns_lookup  : Do a dns lookup
-{0} └──> {1} dns_host_rec: Show a dns servers host record
-{0} └──> {1} zonetransfer: Do a zone transfer test
-{0} └──> {1} shared_dns  : Show a dns servers shared dns
-{0} └──> {1} traceroute  : Trace an ip
-{0} └──> {1} Whois       : Does a Whois lookup
-{0} └──> {1} tcpscan     : Does a tcp port scan
-
-{0}[+] {1}Web{2} (10)
-{0} └──> {1} sourcecode  : Get source code from website
-{0} └──> {1} showip      : Show ipaddress
-{0} └──> {1} site2ip     : Find ip address from website
-{0} └──> {1} headers     : Show headers of a website
-
 '''.format(color.BLUE, color.CWHITE, color.GREEN).decode('utf')
-
 # Small Funcs
 
 def clear():
@@ -720,7 +713,7 @@ def main():
                 trace()
             if option_framework.lower() == 'headers':
                 headers()
-            if option_framework.lower() == 'zone_transfer':
+            if option_framework.lower() == 'zonetransfer':
                 zonetransfer()
             if option_framework.lower() == 'whois':
                 whois_lookup()
@@ -728,6 +721,8 @@ def main():
                 tcpscan()
             if option_framework.lower() == 'admin':
                 admin()
+            if option_framework.lower() == 'tools':
+                print tools
             if option_framework.lower() == 'exit':
                     ErrorLog('Exiting\n')
                     exit()
