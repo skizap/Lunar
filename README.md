@@ -24,8 +24,6 @@
  └──> History     : Shows command History
  └──> Tools       : Shows all downloadable tools
  └──> c-history   : Clears command history
-
-   
 [+] Cryptography (7)
  └──> hex_encode  : Encode word(s) to hex
  └──> hex_decode  : Decode Hex to string
@@ -37,6 +35,24 @@
  └──> hash_sha1   : Encodes word(s) to hash (SHA1)
  └──> hash_sha384 : Encodes word(s) to hash (SHA384)
 
+[+] Virus Bank URLS  (6) ( Geolocation from link )
+ └──>  fraud_link  : Downloads a mac backdoor virus
+ └──>  trojan_link : Downloads a mac key logger
+ └──>  ransom_link : Downloads a mac adware virus
+ └──>  paypal_link : Downloads a mac bitcoin stealing virus
+ └──>  exploit_kit : Shows link + Geolocation from link
+ └──>  trojan_zip  : Downloads a mac spyware virus
+
+[+] Virus Bank Mac  (10)
+ └──>  mac_backdoor: Downloads a mac backdoor virus
+ └──>  mac_keylog  : Downloads a mac key logger
+ └──>  mac_adware  : Downloads a mac adware virus
+ └──>  mac_thief   : Downloads a mac bitcoin stealing virus
+ └──>  mac_dropper : Downloads a mac dropper virus
+ └──>  mac_spyware : Downloads a mac spyware virus
+ └──>  mac_ransom  : Downloads a mac ransomware virus
+ └──>  mac_worm    : Downloads a mac worm
+ └──>  mac_pass    : Downloads a mac password stealer
 
 [+] Wordlist  (6)
  └──>  realpass12k : Downloads a real password list with 12k words
@@ -50,7 +66,7 @@
  └──>  showmac     : Shows mac address
  └──>  showip      : Show ipaddress
  └──>  port listen : Listen to a port
- └──>  geoloacation: Locate an ip address
+ └──>  geolocation : Locate an ip address
  └──>  reverse_ip  : Reverse ip domian lookup
  └──>  dns_lookup  : Do a dns lookup
  └──>  dns_host_rec: Show a dns servers host record
@@ -60,11 +76,11 @@
  └──>  Whois       : Does a Whois lookup
  └──>  tcpscan     : Does a tcp port scan
 
-[+] Web (10)
+[+] Web (4)
  └──>  sourcecode  : Get source code from website
- └──>  showip      : Show ipaddress
  └──>  site2ip     : Find ip address from website
  └──>  headers     : Show headers of a website
+ └──>  admin       : Find admin pannel of website
 
 </pre>
 
