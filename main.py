@@ -25,7 +25,7 @@ import urllib2
 import hashlib
 import time as t
 import subprocess
-from colorama import init
+from colorama import init, Fore
 from cryptography.fernet import Fernet
 from urllib2 import Request, urlopen, URLError, HTTPError
 
@@ -106,7 +106,15 @@ help_mesg = '''
 {0} └──> {1}hash_sha1   : Encodes word(s) to hash (SHA1)
 {0} └──> {1}hash_sha384 : Encodes word(s) to hash (SHA384)
 
-{0}[+] {1}Virus Bank Mac {2} (9)
+{0}[+] {1}Virus Bank URLS {2} (6) ( Geolocation from link )
+{0} └──> {1} fraud_link  : Downloads a mac backdoor virus
+{0} └──> {1} trojan_link : Downloads a mac key logger
+{0} └──> {1} ransom_link : Downloads a mac adware virus
+{0} └──> {1} paypal_link : Downloads a mac bitcoin stealing virus 
+{0} └──> {1} exploit_kit : Shows link + Geolocation from link
+{0} └──> {1} trojan_zip  : Downloads a mac spyware virus
+
+{0}[+] {1}Virus Bank Mac {2} (10)
 {0} └──> {1} mac_backdoor: Downloads a mac backdoor virus
 {0} └──> {1} mac_keylog  : Downloads a mac key logger
 {0} └──> {1} mac_adware  : Downloads a mac adware virus
@@ -226,6 +234,7 @@ def platform_check():
     for line in term_plat:
         if 'windows' in line:
             init(convert=True)
+            color.RED = Fore.GREEN
             agreement()
         if 'linux' in line:
             agreement()
@@ -238,6 +247,21 @@ def platform_check():
         
 # Modules #
 
+def geolocation_virus_bank(option):
+    ErrorLog('Note some links may not work!')
+    if option == 'fraud_link':
+        url = 'zt.tim-taxi.com/login.php'
+    if option == 'trojan_link':
+        url = 'https://www.siteadvisor.com/restricted.html?domain=http%3a%2f%2fmarialorena.com.br%2fwp-content%2fplugins%2fhello123%2f8888ytc6r.exe&originalURL=375990851544&premium=false&client_type=IEPlugin&pip=false&client_uid=-906015698&ui=1&client_ver=4.1.0.14&suite=true&aff_id=550&locale=en_us&os_ver=10.0.17134.1&searchurl=https%3a%2f%2fsearch.yahoo.com%2fsearch%3ffr%3dmcafee%26type%3dE211US550G91207%26p%3d&checksum=e74f9edc8efb01772c77ee716ae0b69ca317d3a91809e79406b6886e6d134fd7'
+    if option == 'ransom_link':
+        url = 'www.hjaoopoa.top/admin.php?f=1.gif'
+    if option == 'paypall_link':
+        url = 'privatkunden.datapipe9271.com/'
+    if option == 'exploit_kit':
+        url = '	ross.starvingmillionaire.org/unveiled/dropdown.js?ver=496e05e1aea0a9c4655800e8a7b9ea28'
+    if option == 'trojan_zip':
+        url = 'tscl.com.bd/m/RI%20XIN%20QUOTATION%20LIST.zip'     
+    
 def admin():
     links = open(x+'\Resources\links.txt')
     website = raw_input(color.GREEN +'[+]'+color.CWHITE + ' Enter a site to scan ex www.google.com: ')
@@ -472,6 +496,157 @@ def mac_backdoor():
     except KeyboardInterrupt:
         main()
 
+def mac_keylog():
+    try:
+        print(color.GREEN + '[+] '+color.CWHITE + 'Password to zip file is: '+color.YELLOW+'infect3d')
+        print (color.GREEN + ' └──> '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://objective-see.com/downloads/malware/AoboKeylogger%20(Baoba).zip'
+        resp = urllib2.urlopen(url)
+        with open('AoboKeylogger (Baoba).zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (keylogger)      
+{1}└──>{0} Virus Name: {3} (AoboKeylogger (Baoba))
+{1}└──>{0} Virus Info: {3} https://www.symantec.com/security-center/writeup/2009-102722-1157-99
+{1}└──>{0} Virus Total: {3}https://www.virustotal.com/#/file/06bf4694bb53c4fc09f1304b28798d28eb06ef0bcc79cbec6098b7dd69288506/    
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def mac_adware():
+    try:
+        print(color.GREEN + '[+] '+color.CWHITE + 'Password to zip file is: '+color.YELLOW+'infect3d')
+        print (color.GREEN + ' └──> '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://objective-see.com/downloads/malware/ClickAgent.zip'
+        resp = urllib2.urlopen(url)
+        with open('ClickAgent.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (adware)      
+{1}└──>{0} Virus Name: {3} (ClickAgent)
+{1}└──>{0} Virus Info: {3}https://blog.malwarebytes.com/threat-analysis/2013/08/fake-flash-player-update-causes-mayhem-in-your-browser/
+{1}└──>{0} Virus Total: {3}https://www.virustotal.com/#/file/12af7ae4815e095fd1f6852df07eccaec870c062ffcdf4c0edbe17312da2c37c/
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def mac_thief():
+    try:
+        print(color.GREEN + '[+] '+color.CWHITE + 'Password to zip file is: '+color.YELLOW+'infect3d')
+        print (color.GREEN + ' └──> '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://objective-see.com/downloads/malware/CoinThief.zip'
+        resp = urllib2.urlopen(url)
+        with open('CoinThief.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (bitcointhief)      
+{1}└──>{0} Virus Name: {3} (CoinThief)
+{1}└──>{0} Virus Info: {3} http://www.thesafemac.com/new-cointhief-malware-discovered/
+{1}└──>{0} Virus Total: {3}https://www.virustotal.com/#/file/7f32fdcaefee42f93590f9490ab735ac9dfeb22a951ff06d721145baf563d53b/    
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def mac_dropper():
+    try:
+        print(color.GREEN + '[+] '+color.CWHITE + 'Password to zip file is: '+color.YELLOW+'infect3d')
+        print (color.GREEN + ' └──> '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://objective-see.com/downloads/malware/EvilEgg.zip'
+        resp = urllib2.urlopen(url)
+        with open('EvilEgg.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (Dropper)      
+{1}└──>{0} Virus Name: {3} (Evil Egg)
+{1}└──>{0} Virus Info: {3} https://blog.malwarebytes.com/threat-analysis/2018/10/mac-cryptocurrency-ticker-app-installs-backdoors/
+{1}└──>{0} Virus Total:{3} https://www.virustotal.com/#/file/f4f45e16dd276b948dedd8a5f8d55c9e1e60884b9fe00143cb092eed693cddc4/   
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def mac_spyware():
+    try:
+        print(color.GREEN + '[+] '+color.CWHITE + 'Password to zip file is: '+color.YELLOW+'infect3d')
+        print (color.GREEN + ' └──> '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://objective-see.com/downloads/malware/DevilRobber.zip'
+        resp = urllib2.urlopen(url)
+        with open('DevilRobber.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (spyware)      
+{1}└──>{0} Virus Name: {3} (DevilRobber)
+{1}└──>{0} Virus Info: {3} https://www.intego.com/mac-security-blog/new-malware-devilrobber-grabs-files-and-bitcoins-performs-bitcoin-mining-and-more/
+{1}└──>{0} Virus Total: {3}https://www.virustotal.com/#/file/868926dc8773abddb806327b3ca9928e9d76a32abd273ea16ed73f4286260724/
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def mac_ransom():
+    try:
+        print(color.GREEN + '[+] '+color.CWHITE + 'Password to zip file is: '+color.YELLOW+'infect3d')
+        print (color.GREEN + ' └──> '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://objective-see.com/downloads/malware/FileCoder.zip'
+        resp = urllib2.urlopen(url)
+        with open('Adwind.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (ransomware)      
+{1}└──>{0} Virus Name: {3} (FileCoder)
+{1}└──>{0} Virus Info: {3} https://securelist.com/unfinished-ransomware-for-macos-x/66760/
+{1}└──>{0} Virus Total: {3}https://www.virustotal.com/#/file/c9c7c7f1afa1d0760f63d895b8c9d5ab49821b2e4fe596b0c5ae94c308009e89/
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def mac_worm():
+    try:
+        print(color.GREEN + '[+] '+color.CWHITE + 'Password to zip file is: '+color.YELLOW+'infect3d')
+        print (color.GREEN + ' └──> '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://objective-see.com/downloads/malware/OOMP%20(Leap).zip'
+        resp = urllib2.urlopen(url)
+        with open('OOMP (Leap)','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (worm)      
+{1}└──>{0} Virus Name: {3} (OOMP (Leap))
+{1}└──>{0} Virus Info: {3} http://www.ambrosiasw.com/forums/index.php?showtopic=102379
+{1}└──>{0} Virus Total: {3}https://www.virustotal.com/#/file/5448c05a8c0764d05519978dcedbff0c33dbfeeeb57c84166c131b878c8b4b6f/
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def mac_pass():
+    try:
+        print(color.GREEN + '[+] '+color.CWHITE + 'Password to zip file is: '+color.YELLOW+'infect3d')
+        print (color.GREEN + ' └──> '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://objective-see.com/downloads/malware/MineSteal.zip'
+        resp = urllib2.urlopen(url)
+        with open('MineSteal.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (password stealer)      
+{1}└──>{0} Virus Name: {3} (MineSteal)
+{1}└──>{0} Virus Info: {3} https://www.intego.com/mac-security-blog/intego-discovers-a-new-multi-platform-minecraft-password-stealer/
+{1}└──>{0} Virus Total: {3}https://www.virustotal.com/#/file/b07a8eb99c448c3981e5dcce5145e8feb99163ac74348a513a9002905346d166/    
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
 def KeyENCODE():
     try:
         key = Fernet.generate_key()
@@ -738,6 +913,22 @@ def main():
                     exit()
             if option_framework.lower() == 'mac_backdoor':
                 mac_backdoor()
+            if option_framework.lower() == 'mac_adware':
+                mac_adware()
+            if option_framework.lower() == 'mac_keylog':
+                mac_keylog()
+            if option_framework.lower() == 'mac_thief':
+                mac_thief()
+            if option_framework.lower() == 'mac_dropper':
+                mac_dropper()
+            if option_framework.lower() == 'mac_spyware':
+                mac_spyware()
+            if option_framework.lower() == 'mac_keylog':
+                mac_keylog()
+            if option_framework.lower() == 'mac_worm':
+                mac_worm()
+            if option_framework.lower() == 'mac_pass':
+                mac_pass()
             main()
         except KeyboardInterrupt:
             ErrorLog('Exit using the command "exit"')
