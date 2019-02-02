@@ -22,10 +22,13 @@ import socket
 import random
 import urllib2
 import hashlib
+import threading
+import time as t
 import subprocess
 from colorama import init
 from cryptography.fernet import Fernet
 from urllib2 import Request, urlopen, URLError, HTTPError
+
 
 #Graphics
 class color:
@@ -41,7 +44,7 @@ class color:
 	END = '\033[0m'
 	CWHITE = '\33[37m'
 
-logo4 = color.BLUE + '''      :::       :::    ::: ::::    :::     :::     :::::::::    
+logo2 = color.BLUE + '''      :::       :::    ::: ::::    :::     :::     :::::::::    
      :+:       :+:    :+: :+:+:   :+:   :+: :+:   :+:    :+:    
     +:+       +:+    +:+ :+:+:+  +:+  +:+   +:+  +:+    +:+     
    +#+       +#+    +:+ +#+ +:+ +#+ +#++:++#++: +#++:++#:       
@@ -68,34 +71,12 @@ logo1 =  color.BLUE + '''
 + -- -[ {2}Be Safe!, Stay Legal{0}        ]
 + -- -[ {2}Instagram @Zuccsss{0}          ]\n\n'''.format(color.CWHITE, color.RED,color.GREEN)
 
-logo2 = color.BLUE + '''               .                                            .
-     *   .                  .              .        .   *          .
-  .         .                     .       .           .      .        .
-        o                             .                   .
-         .              .               {0}Be Safe!, Stay Legal{1}   .           .
-          0     . {0}LUNAR{1}
-                 .          .                 ,                ,    ,
- .          \          .                         .
-      .      \   , {0}Instagram @Zuccsss{1}
-   .          o     .                 .                   .            .
-     .         \                 ,             .                .
-               #\##\#      .                              .        .
-             #  #O##\###         {0}Coded by metachar{1}       .                        
-   .        #*#  #\##\###                       .                     ,
-        .   ##*#  #\##\##               .                     .
-      .      ##*#  #o##\#         .                             ,       .
-          .     *#  #\#     .                    .             .          ,
-                      \          .                         .
-____^/\___^--____/\____O______________/\/\---/\___________---______________
-   /\^   ^  ^    ^                  ^^ ^  '\ ^          ^       ---
-         --           -            --  -      -         ---  __       ^
-   --  __                      ___--  ^  ^                         --  __
-======================================================================================'''.format(color.RED, color.BLUE)
 
 # Vars
 x = os.path.dirname(os.path.realpath(__file__))
 history = []
-logo_list = [logo1,logo2, logo4 ]
+done = False
+logo_list = [logo1, logo2 ]
 termsAndConditions = color.BLUE + ''' Don`t Use LUNAR To:
 create and share malicious viruses, illegally harm others computers,
 interrupt wifi / bluetooth signals without permission, violate security,
@@ -148,10 +129,11 @@ help_mesg = '''
 {0} └──> {1} Whois       : Does a Whois lookup
 {0} └──> {1} tcpscan     : Does a tcp port scan
 
-{0}[+] {1}Web{2} (10)
+{0}[+] {1}Web{2} (4)
 {0} └──> {1} sourcecode  : Get source code from website
 {0} └──> {1} site2ip     : Find ip address from website
 {0} └──> {1} headers     : Show headers of a website
+{0} └──> {1} admin       : Find admin pannel of website
 
 '''.format(color.BLUE, color.CWHITE, color.GREEN).decode('utf')
 
@@ -216,7 +198,7 @@ def agreement():
          main()
      if ' ' in line: #if not load up terms
          print(termsAndConditions)
-         agree = raw_input(color.YELLOW + 'Type "yes" To Agree: ')
+         agree = raw_input(color.YELLOW + 'Type [yes] To Agree: ')
          if agree.lower() == 'yes': #saves agree
              file = open(x+'/Extra/LUNAR.txt','w')
              afile.write('yes')
