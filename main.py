@@ -20,9 +20,9 @@ import sys
 import json
 import socket
 import random
+import requests
 import urllib2
 import hashlib
-import threading
 import time as t
 import subprocess
 from colorama import init
@@ -106,6 +106,16 @@ help_mesg = '''
 {0} └──> {1}hash_sha1   : Encodes word(s) to hash (SHA1)
 {0} └──> {1}hash_sha384 : Encodes word(s) to hash (SHA384)
 
+{0}[+] {1}Virus Bank Mac {2} (9)
+{0} └──> {1} mac_backdoor: Downloads a mac backdoor virus
+{0} └──> {1} mac_keylog  : Downloads a mac key logger
+{0} └──> {1} mac_adware  : Downloads a mac adware virus
+{0} └──> {1} mac_thief   : Downloads a mac bitcoin stealing virus 
+{0} └──> {1} mac_dropper : Downloads a mac dropper virus
+{0} └──> {1} mac_spyware : Downloads a mac spyware virus
+{0} └──> {1} mac_ransom  : Downloads a mac ransomware virus
+{0} └──> {1} mac_worm    : Downloads a mac worm
+{0} └──> {1} mac_pass    : Downloads a mac password stealer
 
 {0}[+] {1}Wordlist {2} (6)
 {0} └──> {1} realpass12k : Downloads a real password list with 12k words
@@ -135,7 +145,7 @@ help_mesg = '''
 {0} └──> {1} headers     : Show headers of a website
 {0} └──> {1} admin       : Find admin pannel of website
 
-'''.format(color.BLUE, color.CWHITE, color.GREEN).decode('utf')
+'''.format(color.BLUE, color.CWHITE, color.GREEN, color.YELLOW).decode('utf')
 
 tools ='''
 {0}[+] {1}Download tools {2}(31)
@@ -442,7 +452,25 @@ def KeyDECODE():
         main()
     except TypeError:
         ErrorLog('Message could not be encoded')
-
+# https://objective-see.com/malware.html
+def mac_backdoor():
+    try:
+        print(color.GREEN + '[+] '+color.CWHITE + 'Password to zip file is: '+color.YELLOW+'infect3d')
+        print (color.GREEN + ' └──> '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://objective-see.com/downloads/malware/Adwind.zip'
+        resp = urllib2.urlopen(url)
+        with open('Adwind.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (backdoor)      
+{1}└──>{0} Virus Name: {3} (AdWind)
+{1}└──>{0} Virus Info: {3} https://blog.malwarebytes.com/threat-analysis/2016/07/cross-platform-malware-adwind-infects-mac/
+{1}└──>{0} Virus Total: {3}https://www.virustotal.com/#/file/7aa15bd505a240a8bf62735a5389a530322945eec6ce9d7b6ad299ca33b2b1b0/    
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
 
 def KeyENCODE():
     try:
@@ -708,6 +736,8 @@ def main():
             if option_framework.lower() == 'exit':
                     ErrorLog('Exiting\n')
                     exit()
+            if option_framework.lower() == 'mac_backdoor':
+                mac_backdoor()
             main()
         except KeyboardInterrupt:
             ErrorLog('Exit using the command "exit"')
