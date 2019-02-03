@@ -44,39 +44,30 @@ class color:
 	UNDERLINE = '\033[4m'
 	END = '\033[0m'
 	CWHITE = '\33[37m'
-
-logo2 = color.BLUE + '''      :::       :::    ::: ::::    :::     :::     :::::::::    
+#Stolen from pastejacker lol 
+logo1 = color.BLUE + '''
+      :::       :::    ::: ::::    :::     :::     :::::::::    
      :+:       :+:    :+: :+:+:   :+:   :+: :+:   :+:    :+:    
     +:+       +:+    +:+ :+:+:+  +:+  +:+   +:+  +:+    +:+     
    +#+       +#+    +:+ +#+ +:+ +#+ +#++:++#++: +#++:++#:       
   +#+       +#+    +#+ +#+  +#+#+# +#+     +#+ +#+    +#+       
  #+#       #+#    #+# #+#   #+#+# #+#     #+# #+#    #+#        
-########## ########  ###    #### ###     ### ###    ###                                      
-                 {0}Coded by Metachar {1}<3{0}
-
-     =[ {2}Coded by metachar           {0}]
-+ -- -[ {2}Easy to use Framework{0}       ]
-+ -- -[ {2}Be Safe!, Stay Legal{0}        ]
-+ -- -[ {2}Instagram @Zuccsss{0}          ]\n\n'''.format(color.CWHITE, color.RED,color.GREEN)
-logo1 =  color.BLUE + '''
-    __                              
-   / /   __  ______  ____ ______    
-  / /   / / / / __ \/ __ `/ ___/    
- / /___/ /_/ / / / / /_/ / /        
-/_____/\__,_/_/ /_/\__,_/_/         
-                                    
-                 {0}Coded by Metachar {1}<3{0}
-
-     =[ {2}Coded by metachar           {0}]
-+ -- -[ {2}Easy to use Framework{0}       ]
-+ -- -[ {2}Be Safe!, Stay Legal{0}        ]
-+ -- -[ {2}Instagram @Zuccsss{0}          ]\n\n'''.format(color.CWHITE, color.RED,color.GREEN)
+########## ########  ###    #### ###     ### ###    ###     
+ {2}/─────────────────────────────────────────────────────\\
+ {2}[{3}=>{2}]     {0}Python Hacking Framework and toolkit      {2}[{3}<={2}]
+ {2}[{3}=>{2}]             {1}Coded By Metchar                  {2}[{3}<={2}]
+ {2}[{3}=>{2}]              {1}Version: 0.0.0                   {2}[{3}<={2}]
+ {2}[{3}=>{2}]            {1}Instagram @Zucccss                 {2}[{3}<={2}]
+ {2}[{3}=>{2}]         {1}Networking web tools & more           {2}[{3}<={2}]
+ {2}[{3}=>{2}]                                               {2}[{3}<={2}]
+ {2}[{3}=>{2}]           {0}TYPE {3}"HELP" {0}FOR OPTIONS             {2}[{3}<={2}] 
+ {2}\_____________________________________________________/\n\n'''.format(color.CWHITE, color.BLUE,color.GREEN, color.YELLOW).decode('utf')
 
 
 # Vars
 x = os.path.dirname(os.path.realpath(__file__))
 history = []
-logo_list = [logo1, logo2 ]
+logo_list = [logo1]
 termsAndConditions = color.BLUE + ''' Don`t Use LUNAR To:
 create and share malicious viruses, illegally harm others computers,
 interrupt wifi / bluetooth signals without permission, violate security,
@@ -85,7 +76,7 @@ and violate privacy
 '''
 
 help_mesg = '''
-{0}[+] {1}Default commands {2}(7)--
+{0}[+] {1}Default commands {2}(7)
 {0} └──> {1}clear       : Clears Screen
 {0} └──> {1}exit        : Exits
 {0} └──> {1}help        : Shows help screen
@@ -149,7 +140,6 @@ help_mesg = '''
 {0} └──> {1} traceroute  : Trace an ip
 {0} └──> {1} Whois       : Does a Whois lookup
 {0} └──> {1} tcpscan     : Does a tcp port scan
-{0} └──> {1} Airmonet    : Create a evil twin using Airmon
 
 {0}[+] {1}Web{2} (4)
 {0} └──> {1} sourcecode  : Get source code from website
@@ -181,7 +171,7 @@ tools ='''
 {0} └──> {1}xss-strike  : Downloads XSS strike   
 {0} └──> {1}wp-scan     : Downloads Wp-scan      
 {0} └──> {1}cupp        : Downloads Cupp         
-{0} └──> {1}hydra       : Downloads Hydra        
+{0} └──> {1}hydra-d     : Downloads Hydra        
 {0} └──> {1}wifite      : Downloads Wifite       
 {0} └──> {1}instabrute  : Downloads Instabrute  
 {0} └──> {1}reaver      : Downloads Reaver       
@@ -217,7 +207,7 @@ def agreement():
  term = afile.readlines() 
  for line in term: 
      if 'yes' in line:
-         print (logo2)
+         print (logo1)
          main()
      if ' ' in line: #if not load up terms
          print(termsAndConditions)
@@ -865,7 +855,7 @@ def main():
     while True:
         global history
         try:
-            option_framework = raw_input(color.YELLOW + 'LUNAR > '+color.CWHITE)
+            option_framework = raw_input(color.BLUE + 'Lunar[>] '+color.CWHITE)
             history.append(option_framework)
             if option_framework.lower()  == '/':
                 last_command = len(history)
@@ -943,8 +933,8 @@ def main():
                 os.system('git clone  https://github.com/wpscanteam/wpscan')
             if option_framework.lower() == 'cupp':
                 os.system('git clone https://github.com/Mebus/cupp')
-            if option_framework.lower() =='hydra':
-                os.system('https://github.com/vanhauser-thc/thc-hydra')
+            if option_framework.lower() =='hydra-d':
+                os.system('git clone https://github.com/vanhauser-thc/thc-hydra')
             if option_framework.lower() == 'https://github.com/derv82/wifite':
                 os.system('git clone https://github.com/derv82/wifite')
             if option_framework.lower() =='instabrute':
