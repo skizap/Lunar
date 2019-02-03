@@ -25,15 +25,19 @@ import urllib2
 import hashlib
 import time as t
 import subprocess
+import selenium
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from colorama import init, Fore
 from cryptography.fernet import Fernet
+from fake_useragent import UserAgent
 from urllib2 import Request, urlopen, URLError, HTTPError
 
 
 #Graphics
 class color:
 	PURPLE = '\033[95m'
-	CYAN = '\033[96m'
+	CYAN = '\033[96ms'
 	DARKCYAN = '\033[36m'
 	BLUE = '\033[94m'
 	GREEN = '\033[92m'
@@ -106,14 +110,6 @@ help_mesg = '''
 {0} └──> {1}hash_sha1   : Encodes word(s) to hash (SHA1)
 {0} └──> {1}hash_sha384 : Encodes word(s) to hash (SHA384)
 
-{0}[+] {1}Virus Bank URLS {2} (6) ( Geolocation from link )
-{0} └──> {1} fraud_link  : Downloads a mac backdoor virus
-{0} └──> {1} trojan_link : Downloads a mac key logger
-{0} └──> {1} ransom_link : Downloads a mac adware virus
-{0} └──> {1} paypal_link : Downloads a mac bitcoin stealing virus 
-{0} └──> {1} exploit_kit : Shows link + Geolocation from link
-{0} └──> {1} trojan_zip  : Downloads a mac spyware virus
-
 {0}[+] {1}Virus Bank Mac {2} (10)
 {0} └──> {1} mac_backdoor: Downloads a mac backdoor virus
 {0} └──> {1} mac_keylog  : Downloads a mac key logger
@@ -124,6 +120,15 @@ help_mesg = '''
 {0} └──> {1} mac_ransom  : Downloads a mac ransomware virus
 {0} └──> {1} mac_worm    : Downloads a mac worm
 {0} └──> {1} mac_pass    : Downloads a mac password stealer
+
+
+{0}[+] {1}Virus Bank Windows {2} (10)
+{0} └──> {1} win_fflash  : Downloads a fake flash player malware
+{0} └──> {1} win_bonzi   : Downloads Bonzi Buddy
+{0} └──> {1} win_memz    : Downloads the MEMZ virus
+{0} └──> {1} win_phish   : Downloads a email phisher
+{0} └──> {1} win_exploit : Downloads a exploit kit
+{0} └──> {1} win_trojan  : Downloads a Trojan
 
 {0}[+] {1}Wordlist {2} (6)
 {0} └──> {1} realpass12k : Downloads a real password list with 12k words
@@ -247,21 +252,6 @@ def platform_check():
         
 # Modules #
 
-def geolocation_virus_bank(option):
-    ErrorLog('Note some links may not work!')
-    if option == 'fraud_link':
-        url = 'zt.tim-taxi.com/login.php'
-    if option == 'trojan_link':
-        url = 'https://www.siteadvisor.com/restricted.html?domain=http%3a%2f%2fmarialorena.com.br%2fwp-content%2fplugins%2fhello123%2f8888ytc6r.exe&originalURL=375990851544&premium=false&client_type=IEPlugin&pip=false&client_uid=-906015698&ui=1&client_ver=4.1.0.14&suite=true&aff_id=550&locale=en_us&os_ver=10.0.17134.1&searchurl=https%3a%2f%2fsearch.yahoo.com%2fsearch%3ffr%3dmcafee%26type%3dE211US550G91207%26p%3d&checksum=e74f9edc8efb01772c77ee716ae0b69ca317d3a91809e79406b6886e6d134fd7'
-    if option == 'ransom_link':
-        url = 'www.hjaoopoa.top/admin.php?f=1.gif'
-    if option == 'paypall_link':
-        url = 'privatkunden.datapipe9271.com/'
-    if option == 'exploit_kit':
-        url = '	ross.starvingmillionaire.org/unveiled/dropdown.js?ver=496e05e1aea0a9c4655800e8a7b9ea28'
-    if option == 'trojan_zip':
-        url = 'tscl.com.bd/m/RI%20XIN%20QUOTATION%20LIST.zip'     
-    
 def admin():
     links = open(x+'\Resources\links.txt')
     website = raw_input(color.GREEN +'[+]'+color.CWHITE + ' Enter a site to scan ex www.google.com: ')
@@ -476,7 +466,115 @@ def KeyDECODE():
         main()
     except TypeError:
         ErrorLog('Message could not be encoded')
-# https://objective-see.com/malware.html
+
+def win_fflash():
+    try:
+        print (color.GREEN + '[+] '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://www.malware-traffic-analysis.net/2014/05/17/2014-05-17-fake-Flash-updater-malware.zip'
+        resp = urllib2.urlopen(url)
+        with open('2014-05-17-fake-Flash-updater-malware.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (Fake Flash Updater)      
+{1}└──>{0} Virus Name: {3} (flash updater)
+{1}└──>{0} Virus Info: {3} https://www.malware-traffic-analysis.net/2014/05/17/index.html
+{1}└──>{0} Virus Total: {3} ???   
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def win_bonzi():
+    try:
+        print (color.GREEN + '[+] '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'http://bonzi.link/Bon.zip'
+        resp = urllib2.urlopen(url)
+        with open('Bon.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (spyware)      
+{1}└──>{0} Virus Name: {3} (Bonzi Buddy)
+{1}└──>{0} Virus Info: {3} http://malware.wikia.com/wiki/BonziBUDDY
+{1}└──>{0} Virus Total: {3} https://www.virustotal.com/en/file/f1e859d99072e35f20e172d8458e3ea1baf8ba86c8c9e311a0debcd2acd5d0fc/analysis/1432901157/
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def win_memz():
+    try:
+        print (color.GREEN + '[+] '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://github.com/Horter/MEMZ-4.0/archive/master.zip'
+        resp = urllib2.urlopen(url)
+        with open('MEMZ-4.0-master','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (trojan)      
+{1}└──>{0} Virus Name: {3} (MEMZ Virus)
+{1}└──>{0} Virus Info: {3} http://malware.wikia.com/wiki/MEMZ
+{1}└──>{0} Virus Total: {3} ???
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def win_phishing():
+    try:
+        print (color.GREEN + '[+] '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://www.malware-traffic-analysis.net/2014/11/12/2014-11-12-Asprox-malware-and-artifacts.zip'
+        resp = urllib2.urlopen(url)
+        with open('2014-11-12-Asprox-malware-and-artifacts.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (trojan)      
+{1}└──>{0} Virus Name: {3} (MEMZ Virus)
+{1}└──>{0} Virus Info: {3} https://www.malware-traffic-analysis.net/2014/11/12/index.html
+{1}└──>{0} Virus Total: {3} https://www.virustotal.com/en/file/e6dc1655d31aec69533d9c8bec205615a164b66eed48176cd63140707a3a5cde/analysis/
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def win_exploitkit():
+    try:
+        print (color.GREEN + '[+] '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://www.malware-traffic-analysis.net/2014/08/22/2014-08-22-unknown-EK-malware.zip'
+        resp = urllib2.urlopen(url)
+        with open('2014-08-22-unknown-EK-malware.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (Exploit Kit)      
+{1}└──>{0} Virus Name: {3} (Unknown Exploit Kit)
+{1}└──>{0} Virus Info: {3} https://www.malware-traffic-analysis.net/2014/11/12/index.html
+{1}└──>{0} Virus Total: {3} https://www.virustotal.com/en/file/f31c557625286af01fc5dc3afa5b1cb43420cf5737d0c63a49faefb91cb387be/analysis/
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
+def win_trojan():
+    try:
+        print (color.GREEN + '[+] '.decode('utf') + color.CWHITE + 'Downloading zip file')
+        t.sleep(.5)
+        url = 'https://www.malware-traffic-analysis.net/2014/01/13/2014-01-13-malware-from-Goon-EK-traffic.zip'
+        resp = urllib2.urlopen(url)
+        with open('2014-01-13-malware-from-Goon-EK-traffic.zip','wb') as output:
+            output.write(resp.read())
+        print color.CWHITE + '''
+==========================================
+{1}└──>{0} Virus Type: {3} (Trojan Downloader)      
+{1}└──>{0} Virus Name: {3} (Goon-EK)
+{1}└──>{0} Virus Info: {3} https://www.malware-traffic-analysis.net/2014/01/13/index.html
+{1}└──>{0} Virus Total: {3} https://www.virustotal.com/en/file/e65fd0090bd04fb2f239acd1d443879f06c440e745fb0539e4ab53e64e9e2f23/analysis/1389588377/
+{2}=========================================='''.decode('utf').format(color.BLUE, color.YELLOW, color.CWHITE, color.RED)
+    except KeyboardInterrupt:
+        main()
+
 def mac_backdoor():
     try:
         print(color.GREEN + '[+] '+color.CWHITE + 'Password to zip file is: '+color.YELLOW+'infect3d')
@@ -929,7 +1027,18 @@ def main():
                 mac_worm()
             if option_framework.lower() == 'mac_pass':
                 mac_pass()
-            main()
+            if option_framework.lower() == 'win_fflash':
+                win_fflash()
+            if option_framework.lower() == 'win_bonzi':
+                win_bonzi()
+            if option_framework.lower() == 'win_memz':
+                win_memz()
+            if option_framework.lower() == 'win_phish':
+                win_phishing()
+            if option_framework.lower() == 'win_exploit':
+                win_exploitkit() 
+            if option_framework.lower() == 'win_trojan':
+                win_trojan()           
         except KeyboardInterrupt:
             ErrorLog('Exit using the command "exit"')
 
