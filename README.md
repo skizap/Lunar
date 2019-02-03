@@ -11,7 +11,10 @@
  pip2 install colorama
  pip2 install hashlib
  python2 main.py
+ 
  </pre>
+ <h3> Screenshots </h3>
+ <img src="https://i.imgur.com/nBANy5R.png"> 
  <h3>Options Modules</h3>
 <pre>
 
