@@ -10,7 +10,6 @@
  pip2 install urllib2
  pip2 install colorama
  pip2 install hashlib
-
  python2 main.py
  </pre>
  <h3>Options Modules</h3>
@@ -34,15 +33,6 @@
  └──> hash_sha512 : Encodes word(s) to hash (SHA256)
  └──> hash_sha1   : Encodes word(s) to hash (SHA1)
  └──> hash_sha384 : Encodes word(s) to hash (SHA384)
-
-[+] Virus Bank URLS  (6) ( Geolocation from link )
- └──>  fraud_link  : Downloads a mac backdoor virus
- └──>  trojan_link : Downloads a mac key logger
- └──>  ransom_link : Downloads a mac adware virus
- └──>  paypal_link : Downloads a mac bitcoin stealing virus
- └──>  exploit_kit : Shows link + Geolocation from link
- └──>  trojan_zip  : Downloads a mac spyware virus
-
 [+] Virus Bank Mac  (10)
  └──>  mac_backdoor: Downloads a mac backdoor virus
  └──>  mac_keylog  : Downloads a mac key logger
@@ -53,7 +43,13 @@
  └──>  mac_ransom  : Downloads a mac ransomware virus
  └──>  mac_worm    : Downloads a mac worm
  └──>  mac_pass    : Downloads a mac password stealer
-
+[+] Virus Bank Windows  (10)
+ └──>  win_fflash  : Downloads a fake flash player malware
+ └──>  win_bonzi   : Downloads Bonzi Buddy
+ └──>  win_memz    : Downloads the MEMZ virus
+ └──>  win_phish   : Downloads a email phisher
+ └──>  win_exploit : Downloads a exploit kit
+ └──>  win_trojan  : Downloads a Trojan
 [+] Wordlist  (6)
  └──>  realpass12k : Downloads a real password list with 12k words
  └──>  darkweb2017 : Download the top passwords from the dark web
@@ -61,7 +57,6 @@
  └──>  unknown-azul: Downloads txt list unknown azul
  └──>  bt4_list    : Downloads the bt4 pass list
  └──>  cracked_hash: Downloads the cracked hash list
-
 [+] Networking  (12)
  └──>  showmac     : Shows mac address
  └──>  showip      : Show ipaddress
@@ -75,13 +70,11 @@
  └──>  traceroute  : Trace an ip
  └──>  Whois       : Does a Whois lookup
  └──>  tcpscan     : Does a tcp port scan
-
 [+] Web (4)
  └──>  sourcecode  : Get source code from website
  └──>  site2ip     : Find ip address from website
  └──>  headers     : Show headers of a website
  └──>  admin       : Find admin pannel of website
-
 </pre>
 
 <h3> Downloadable Tools </h3>
