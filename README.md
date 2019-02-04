@@ -3,16 +3,22 @@
 <p> Python Framework ⭐</p>
 <img src="https://img.shields.io/badge/Tested-Linux%20%26%20Windows-green.svg">
 <br>
-<hr><h3> Install & Run</h3></hr>
+<hr><h3> Install & Run Linux</h3></hr>
 <p> Must have python 2.6 / 2.7 installed <p>
 <pre>
- pip2 install cryptography
- pip2 install urllib2
- pip2 install colorama
- pip2 install hashlib
+ sh install.sh
  python2 main.py
  
  </pre>
+ 
+ <hr><h3> Install & Run Windows</h3></hr>
+<p> Must have python 2.6 / 2.7 installed <p>
+<pre>
+ install.bat
+ python2 main.py
+ 
+ </pre>
+ 
  <h3> Screenshots </h3>
  <img src="https://i.imgur.com/nBANy5R.png"> 
  <h3>Options Modules</h3>
