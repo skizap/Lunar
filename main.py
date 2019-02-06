@@ -243,14 +243,14 @@ def platform_check():
 def wireshark():
     try:
         iface = raw_input(color.GREEN +'[+] '+color.CWHITE + 'Enter a iface: ')
-        if init(convert=False):
+        sys = raw_input(color.GREEN +'[+] '+color.CWHITE + 'Are you '+color.BLUE+'W'+color.CWHITE+'/'+color.GREEN+'L ')
+        if sys.lower() == 'l':
             command = 'sudo wireshark -i '+ iface
             os.system(command)
         else:
-            init(convert=True)
             command = 'wireshark -i '+ iface
             os.system(command)
-        print color.CWHITE + ''
+
     except KeyboardInterrupt:
         main()
 
