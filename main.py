@@ -77,7 +77,7 @@ and violate privacy
 
 help_mesg = '''
 {0}[+] {1}Default commands {2}(7)
-{0} └──> {1}clear       : Clears Screen
+{0} └──> {1}clear/cls   : Clears Screen (linux)/ Windows 
 {0} └──> {1}exit        : Exits
 {0} └──> {1}help        : Shows help screen
 {0} └──> {1}/           : Use last command
@@ -99,7 +99,7 @@ help_mesg = '''
 {0} └──> {1}hash_sha1   : Encodes word(s) to hash (SHA1)
 {0} └──> {1}hash_sha384 : Encodes word(s) to hash (SHA384)
 
-{0}[+] {1}Virus Bank Mac {2} (10) --> Pass Infected <--
+{0}[+] {1}Virus Bank Mac {2} (10) --> Pass infect3d <--
 {0} └──> {1} mac_backdoor: Downloads a mac backdoor virus
 {0} └──> {1} mac_keylog  : Downloads a mac key logger
 {0} └──> {1} mac_adware  : Downloads a mac adware virus
@@ -109,7 +109,6 @@ help_mesg = '''
 {0} └──> {1} mac_ransom  : Downloads a mac ransomware virus
 {0} └──> {1} mac_worm    : Downloads a mac worm
 {0} └──> {1} mac_pass    : Downloads a mac password stealer
-
 
 {0}[+] {1}Virus Bank Windows {2} (6) --> Pass Infected <--
 {0} └──> {1} win_fflash  : Downloads a fake flash player malware
@@ -141,7 +140,7 @@ help_mesg = '''
 {0} └──> {1} Whois       : Does a Whois lookup
 {0} └──> {1} tcpscan     : Does a tcp port scan
 
-{0}[+] {1}Web{2} (4)
+{0}[+] {1}Web{2} (5)
 {0} └──> {1} sourcecode  : Get source code from website
 {0} └──> {1} site2ip     : Find ip address from website
 {0} └──> {1} headers     : Show headers of a website
@@ -200,7 +199,6 @@ def  WarningLog(text):
 def SuccessLog(text):
     print (color.GREEN + "[+] "+color.CWHITE + text)
 
-
 def agreement():
  clear()
  afile = open(x+'/Extra/LUNAR.txt','r+')
@@ -229,9 +227,9 @@ def platform_check():
     for line in term_plat:
         if 'windows' in line:
             init(convert=True)
-            color.RED = Fore.GREEN
             agreement()
         if 'linux' in line:
+            init(convert=False)
             agreement()
         if ' ' in line:
             print ('What OS are you using (linux) or (windows)')
@@ -241,6 +239,21 @@ def platform_check():
         platform_check()
         
 # Modules #
+
+def wireshark():
+    try:
+        iface = raw_input(color.GREEN +'[+] '+color.CWHITE + 'Enter a iface: ')
+        if init(convert=False):
+            command = 'sudo wireshark -i '+ iface
+            os.system(command)
+        else:
+            init(convert=True)
+            command = 'wireshark -i '+ iface
+            os.system(command)
+        print color.CWHITE + ''
+    except KeyboardInterrupt:
+        main()
+
 
 
 def hydra_brute():
@@ -849,6 +862,8 @@ def showip():
     main()
 
 
+
+
 # MAIN
 
 def main():
@@ -1046,10 +1061,12 @@ def main():
                 win_trojan()
             if option_framework.lower() == 'hydra':
                 hydra_brute()
+            if option_framework.lower() == 'wireshark':
+                wireshark()
             if option_framework.lower() == 'os':
+                command = raw_input(color.GREEN + '[+] '+color.CWHITE + 'Enter a command: ')
                 try:
-                    command = raw_input(color.GREEN + '[+] '+color.CWHITE+ 'Enter a command: ')
-                    subprocess.call(command)    
+                    os.system(command)
                 except:
                     main()       
         except KeyboardInterrupt:
