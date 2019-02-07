@@ -14,7 +14,8 @@
 
 
 
-# imports 
+# imports
+import re 
 import os
 import sys
 import json
@@ -26,6 +27,7 @@ import hashlib
 import datetime
 import time as t
 import subprocess
+from bs4 import BeautifulSoup
 from colorama import init, Fore
 from cryptography.fernet import Fernet
 from urllib2 import Request, urlopen, URLError, HTTPError
@@ -56,7 +58,7 @@ logo1 = color.BLUE + '''
  {2}/─────────────────────────────────────────────────────\\
  {2}[{3}=>{2}]     {0}Python Hacking Framework and toolkit      {2}[{3}<={2}]
  {2}[{3}=>{2}]             {1}Coded By Metchar                  {2}[{3}<={2}]
- {2}[{3}=>{2}]              {1}Version: 0.0.0                   {2}[{3}<={2}]
+ {2}[{3}=>{2}]              {1}Version: 1.0.0                   {2}[{3}<={2}]
  {2}[{3}=>{2}]            {1}Instagram @Zucccss                 {2}[{3}<={2}]
  {2}[{3}=>{2}]         {1}Networking web tools & more           {2}[{3}<={2}]
  {2}[{3}=>{2}]                                               {2}[{3}<={2}]
@@ -68,6 +70,7 @@ logo1 = color.BLUE + '''
 x = os.path.dirname(os.path.realpath(__file__))
 history = []
 logo_list = [logo1]
+version = 1
 termsAndConditions = color.BLUE + ''' Don`t Use LUNAR To:
 create and share malicious viruses, illegally harm others computers,
 interrupt wifi / bluetooth signals without permission, violate security,
@@ -139,6 +142,7 @@ help_mesg = '''
 {0} └──> {1} traceroute  : Trace an ip
 {0} └──> {1} Whois       : Does a Whois lookup
 {0} └──> {1} tcpscan     : Does a tcp port scan
+{0} └──> {1} wireshark   : Opens wireshark with choice of iface
 
 {0}[+] {1}Web{2} (5)
 {0} └──> {1} sourcecode  : Get source code from website
@@ -146,6 +150,7 @@ help_mesg = '''
 {0} └──> {1} headers     : Show headers of a website
 {0} └──> {1} admin       : Find admin pannel of website
 {0} └──> {1} hydra       : Hydra email brute force
+{0} └──> {1} sublink     : Find links from a website
 
 '''.format(color.BLUE, color.CWHITE, color.GREEN, color.YELLOW).decode('utf')
 
@@ -239,6 +244,14 @@ def platform_check():
         platform_check()
         
 # Modules #
+
+def sublink():
+    page = raw_input(color.GREEN +'[+] '+color.CWHITE + 'Enter a website: ')
+    html_page = urllib2.urlopen(page)
+    soup = BeautifulSoup(html_page, "lxml")
+    print '\n'
+    for link in soup.findAll('a'):
+        print (color.GREEN + '--> '+color.CWHITE+ str(link.get('href')).decode('utf'))
 
 def wireshark():
     try:
@@ -1068,7 +1081,9 @@ def main():
                 try:
                     os.system(command)
                 except:
-                    main()       
+                    main()
+            if option_framework.lower() == 'sublink':
+                sublink()       
         except KeyboardInterrupt:
             ErrorLog('Exit using the command "exit"')
 
